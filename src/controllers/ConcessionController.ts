@@ -26,6 +26,17 @@ export class ConcessionController extends CrudController {
         res.json("erreur");
       });
   }
+  public async getAll(req: Request, res: Response): Promise<void> {
+    const concessions = Concession.findByPk(req.params.id, {
+      include: [Mines,Contacts, ],
+    })
+      .then((concession) => res.json(concession))
+      .catch((err) => {
+        console.log(err);
+        res.json("erreur");
+      });
+    const test = Concession.findByPk(req.params.id, { include: [Mines] });
+  }
   public async getMines(req: Request, res: Response): Promise<void> {
     const concessions = Concession.findByPk(req.params.id, {
       include: [

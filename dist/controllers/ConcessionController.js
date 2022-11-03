@@ -22,6 +22,17 @@ class ConcessionController extends CrudController_1.CrudController {
             res.json("erreur");
         });
     }
+    async getAll(req, res) {
+        const concessions = Concession_1.Concession.findByPk(req.params.id, {
+            include: [Mines_1.Mines, Contacts_1.Contacts,],
+        })
+            .then((concession) => res.json(concession))
+            .catch((err) => {
+            console.log(err);
+            res.json("erreur");
+        });
+        const test = Concession_1.Concession.findByPk(req.params.id, { include: [Mines_1.Mines] });
+    }
     async getMines(req, res) {
         const concessions = Concession_1.Concession.findByPk(req.params.id, {
             include: [
