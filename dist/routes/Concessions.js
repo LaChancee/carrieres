@@ -14,3 +14,6 @@ exports.Concessionsrouter.route("/concessions/show/:id").get(concessionsControll
 exports.Concessionsrouter.route("/concessions/add").post(concessionsController.create);
 exports.Concessionsrouter.route("/concessions/update/:id").put(concessionsController.update);
 exports.Concessionsrouter.route("/concessions/delete/:id").delete(concessionsController.delete);
+exports.Concessionsrouter.route("/concessions/show/mines/:id").get(concessionsController.getMines);
+exports.Concessionsrouter.route("/concessions/show/contact/:id").get(concessionsController.getContact);
+exports.Concessionsrouter.route("/concessions/all/:id").get(concessionsController.getAll);

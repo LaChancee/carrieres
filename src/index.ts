@@ -21,6 +21,9 @@ app.get("/concessions/show/:id", Concessionsrouter);
 app.post("/concessions/add", Concessionsrouter);
 app.put("/concessions/update/:id", Concessionsrouter);
 app.delete("/concessions/delete/:id", Concessionsrouter);
+app.get("/concessions/show/mines/:id", Concessionsrouter);
+app.get("/concessions/show/contact/:id", Concessionsrouter);
+app.get("/concessions/all/:id", Concessionsrouter);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 

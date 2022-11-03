@@ -4,6 +4,8 @@ import { ParamsDictionary } from "express-serve-static-core";
 import { read } from "fs";
 import { ParsedQs } from "qs";
 import { Concession } from "../models/Concession";
+import { Contacts } from "../models/Contacts";
+import { Mines } from "../models/Mines";
 import { CrudController } from "./CrudController";
 
 export class ConcessionController extends CrudController {
@@ -24,6 +26,41 @@ export class ConcessionController extends CrudController {
         res.json("erreur");
       });
   }
+  public async getMines(req: Request, res: Response): Promise<void> {
+    const concessions = Concession.findByPk(req.params.id, {
+      include: [
+        {
+          model: Mines,
+          required: true,
+        },
+      ],
+      attributes: { exclude: ["name","license", "siret", "phone", "id_adresses", "id"] },
+    })
+      .then((concession) => res.json(concession))
+      .catch((err) => {
+        console.log(err);
+        res.json("erreur");
+      });
+    const test = Concession.findByPk(req.params.id, { include: [Mines] });
+  }
+  public async getContact(req: Request, res: Response): Promise<void> {
+    const concessions = Concession.findByPk(req.params.id, {
+      include: [
+        {
+          model: Contacts,
+          required: true,
+        },
+      ],
+      attributes: { exclude: ["name","license", "siret", "phone", "id_adresses", "id"] },
+    })
+      .then((concession) => res.json(concession))
+      .catch((err) => {
+        console.log(err);
+        res.json("erreur");
+      });
+    const test = Concession.findByPk(req.params.id, { include: [Mines] });
+  }
+
   // Update CRUD
   update(req: Request, res: Response): void {
     let id = req.params.id;
@@ -49,7 +86,6 @@ export class ConcessionController extends CrudController {
     Concession.findByPk(id)
       .then((concession) => {
         if (concession) {
-          
           concession.destroy();
           res.json({ message: "concession deleted" });
         } else {

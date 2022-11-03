@@ -20,6 +20,9 @@ app.get("/concessions/show/:id", Concessions_1.Concessionsrouter);
 app.post("/concessions/add", Concessions_1.Concessionsrouter);
 app.put("/concessions/update/:id", Concessions_1.Concessionsrouter);
 app.delete("/concessions/delete/:id", Concessions_1.Concessionsrouter);
+app.get("/concessions/show/mines/:id", Concessions_1.Concessionsrouter);
+app.get("/concessions/show/contact/:id", Concessions_1.Concessionsrouter);
+app.get("/concessions/all/:id", Concessions_1.Concessionsrouter);
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(config_1.PORT, () => {
     console.log(`Server listening on ${config_1.PORT}`);
