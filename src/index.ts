@@ -13,6 +13,7 @@ app.use(express.json());
 app.get("/mines/show/:id", router);
 app.post("/mines/add", router);
 app.put("/mines/update/:id", router);
+app.delete("/mines/delete/:id", router);
 
 
 app.get("/", (req, res) => res.send("Hello World!"));

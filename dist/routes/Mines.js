@@ -13,3 +13,4 @@ exports.router = express_1.default.Router({
 exports.router.route("/mines/show/:id").get(minesController.read);
 exports.router.route("/mines/add").post(minesController.create);
 exports.router.route("/mines/update/:id").put(minesController.update);
+exports.router.route("/mines/delete/:id").delete(minesController.delete);

@@ -3,13 +3,13 @@ import { Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { read } from "fs";
 import { ParsedQs } from "qs";
-import { Mines } from "../models/Mines";
+import { Concession } from "../models/Concession";
 import { CrudController } from "./CrudController";
 
-export class MineController extends CrudController {
+export class ConcessionController extends CrudController {
   public create(req: Request, res: Response): void {
-    Mines.create(req.body)
-      .then((mines) => res.json(mines))
+    Concession.create(req.body)
+      .then((concession) => res.json(concession))
       .catch((err) => {
         console.log(err);
         res.json({ message: "Insertion impossible" });
@@ -17,8 +17,8 @@ export class MineController extends CrudController {
   }
 
   public async read(req: Request, res: Response): Promise<void> {
-    Mines.findByPk(req.params.id)
-      .then((mines) => res.json(mines))
+    Concession.findByPk(req.params.id)
+      .then((concession) => res.json(concession))
       .catch((err) => {
         console.log(err);
         res.json("erreur");
@@ -28,14 +28,14 @@ export class MineController extends CrudController {
   update(req: Request, res: Response): void {
     let id = req.params.id;
     let minesUpdate = req.body;
-    Mines.findByPk(id)
-      .then((mines) => {
-        if (mines) {
-          mines.set(minesUpdate);
-          mines.save();
-          res.json({ message: "mines updated" });
+    Concession.findByPk(id)
+      .then((concession) => {
+        if (concession) {
+          concession.set(minesUpdate);
+          concession.save();
+          res.json({ message: "concession updated" });
         } else {
-          res.json({ message: "mines not found with id: " + id });
+          res.json({ message: "concession not found with id: " + id });
         }
       })
       .catch((err) => {
@@ -46,14 +46,14 @@ export class MineController extends CrudController {
 
   delete(req: Request, res: Response): void {
     let id = req.params.id;
-    Mines.findByPk(id)
-      .then((mines) => {
-        if (mines) {
+    Concession.findByPk(id)
+      .then((concession) => {
+        if (concession) {
           
-          mines.destroy();
-          res.json({ message: "mines deleted" });
+          concession.destroy();
+          res.json({ message: "concession deleted" });
         } else {
-          res.json({ message: "mines not found with id: " + id });
+          res.json({ message: "concession not found with id: " + id });
         }
       })
       .catch((err) => {

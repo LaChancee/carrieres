@@ -9,3 +9,4 @@ export const router = express.Router({
 router.route("/mines/show/:id").get( minesController.read);
 router.route("/mines/add").post( minesController.create);
 router.route("/mines/update/:id").put( minesController.update);
+router.route("/mines/delete/:id").delete( minesController.delete);
