@@ -24,7 +24,7 @@ export class MineController extends CrudController {
         res.json("erreur");
       });
   }
-
+  // Update CRUD
   update(req: Request, res: Response): void {
     let id = req.params.id;
     let minesUpdate = req.body;
