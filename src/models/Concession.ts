@@ -12,7 +12,7 @@ export class Concession extends Model
     declare siret:string;
     declare license:string;
     declare phone: string;
-    declare addresse_id: number;
+    declare id_adresses: number;
 }
 
 Concession.init({
@@ -37,16 +37,16 @@ Concession.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    addresse_id: {
+    id_adresses: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 },
 {
     sequelize,
-    tableName: "mines",
+    tableName: "concessions",
     timestamps: false
 });
 
-Addresse.belongsTo(Concession,{foreignKey: "addresse_id"});
-Concession.hasOne(Addresse, {foreignKey: "addresse_id"});
+Addresse.belongsTo(Concession,{foreignKey: "id_adresses"});
+Concession.hasOne(Addresse, {foreignKey: "id_adresses"});

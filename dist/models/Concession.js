@@ -29,14 +29,14 @@ Concession.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    addresse_id: {
+    id_adresses: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     }
 }, {
     sequelize: database_1.sequelize,
-    tableName: "mines",
+    tableName: "concessions",
     timestamps: false
 });
-Addresse_1.Addresse.belongsTo(Concession, { foreignKey: "addresse_id" });
-Concession.hasOne(Addresse_1.Addresse, { foreignKey: "addresse_id" });
+Addresse_1.Addresse.belongsTo(Concession, { foreignKey: "id_adresses" });
+Concession.hasOne(Addresse_1.Addresse, { foreignKey: "id_adresses" });
