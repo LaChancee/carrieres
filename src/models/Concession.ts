@@ -1,6 +1,7 @@
 import {Model, DataTypes, DecimalDataType} from 'sequelize'
 
 import { sequelize } from "../database/database"
+import { Addresse } from './Addresse';
 import { Mines } from './Mines';
 
 
@@ -47,5 +48,5 @@ Concession.init({
     timestamps: false
 });
 
-Mines.belongsTo(Concession,{foreignKey: "addresse_id"});
-Concession.hasMany(Mines, {foreignKey: "addresse_id"});
+Addresse.belongsTo(Concession,{foreignKey: "addresse_id"});
+Concession.hasOne(Addresse, {foreignKey: "addresse_id"});

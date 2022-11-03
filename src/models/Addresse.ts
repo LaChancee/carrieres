@@ -2,45 +2,44 @@ import {Model, DataTypes, DecimalDataType} from 'sequelize'
 
 import { sequelize } from "../database/database"
 import { Concession } from './Concession';
+import { Mines } from './Mines';
 
 
-export class Mines extends Model
+export class Addresse extends Model
 {
     public id!: number;
-    declare name: string;
-    declare longitude:DecimalDataType;
-    declare latitude:DecimalDataType;
-    declare id_concessions: number;
+    declare street: string;
+    declare complement:string;
+    declare zipcode:string;
+    declare town: string;
 }
 
-Mines.init({
+Addresse.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    name: {
+    street: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    longitude: {
-        type: DataTypes.DECIMAL,
+    complement: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    latitude: {
-        type: DataTypes.DECIMAL,
+    zipcode: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    id_concessions: {
-        type: DataTypes.INTEGER,
+    town: {
+        type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+   
 },
 {
     sequelize,
     tableName: "mines",
     timestamps: false
 });
-
-Mines.belongsTo(Concession,{foreignKey: "id_concessions"});
-Concession.hasMany(Mines, {foreignKey: "id_concessions"});
